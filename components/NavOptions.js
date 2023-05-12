@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   {
@@ -25,13 +26,18 @@ const data = [
 ];
 
 function NavOptions(props) {
+  const navigation = useNavigation();
+
   return (
     <FlatList
       data={data}
       keyExtractor={(item) => item.id}
       horizontal
       renderItem={({ item }) => (
-        <TouchableOpacity style={styles.navContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(item.screen)}
+          style={styles.navContainer}
+        >
           <View>
             <Image
               style={{ width: 120, height: 120, resizeMode: "contain" }}

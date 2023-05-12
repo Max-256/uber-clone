@@ -1,5 +1,6 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+
 import NavOptions from "../components/NavOptions";
 
 function HomeScreen(props) {
