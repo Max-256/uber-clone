@@ -2,10 +2,13 @@ import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import Map from "../components/Map";
+import NavigateCard from "../components/NavigateCard";
 
 function MapScreen(props) {
+  const Stack = createStackNavigator();
   const navigation = useNavigation();
 
   return (
@@ -21,7 +24,17 @@ function MapScreen(props) {
       <View style={styles.topHalf}>
         <Map />
       </View>
-      <View style={styles.bottomHalf}></View>
+      <View style={styles.bottomHalf}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="NavigateCard"
+            component={NavigateCard}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </View>
     </View>
   );
 }
