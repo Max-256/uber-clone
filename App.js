@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { KeyboardAvoidingView } from "react-native";
+import { Platform } from "react-native";
 
 import { store } from "./store";
 import HomeScreen from "./screens/HomeScreen";
@@ -20,18 +22,23 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
           <SafeAreaProvider>
-            <Stack.Navigator screenOptions={{ presentation: "modal" }}>
-              <Stack.Screen
-                name="HomeScreen"
-                component={HomeScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="MapScreen"
-                component={MapScreen}
-                options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              style={styles.container}
+            >
+              <Stack.Navigator screenOptions={{ presentation: "modal" }}>
+                <Stack.Screen
+                  name="HomeScreen"
+                  component={HomeScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="MapScreen"
+                  component={MapScreen}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Navigator>
+            </KeyboardAvoidingView>
           </SafeAreaProvider>
         </NavigationContainer>
       </Provider>
@@ -42,8 +49,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

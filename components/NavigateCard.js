@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
 
+import NavFavorites from "./NavFavorites";
+
 function NavigateCard(props) {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -54,6 +56,7 @@ function NavigateCard(props) {
           returnKeyType={"search"}
         />
       </View>
+      <NavFavorites />
     </SafeAreaView>
   );
 }
