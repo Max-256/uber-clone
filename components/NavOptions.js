@@ -9,6 +9,10 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import tw from "tailwind-react-native-classnames";
+
+import { selectOrigin } from "../slices/navSlice";
 
 const data = [
   {
@@ -28,6 +32,8 @@ const data = [
 function NavOptions(props) {
   const navigation = useNavigation();
 
+  const origin = useSelector(selectOrigin);
+
   return (
     <FlatList
       data={data}
@@ -37,8 +43,9 @@ function NavOptions(props) {
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
           style={styles.navContainer}
+          disabled={!origin}
         >
-          <View>
+          <View style={tw`${!origin && "opacity-20"}`}>
             <Image
               style={{ width: 120, height: 120, resizeMode: "contain" }}
               source={{ uri: item.image }}
