@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 import NavOptions from "../components/NavOptions";
 import { setOrigin, setDestination } from "../slices/navSlice";
+import NavFavorites from "../components/NavFavorites";
 
 function HomeScreen(props) {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function HomeScreen(props) {
         />
 
         <NavOptions />
+        <NavFavorites />
       </View>
     </SafeAreaView>
   );
