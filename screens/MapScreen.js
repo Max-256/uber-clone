@@ -1,13 +1,15 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+import Map from "../components/Map";
 
 function MapScreen(props) {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text>Holla, I am the map screen</Text>
       <AntDesign
         onPress={() => navigation.goBack()}
@@ -15,7 +17,12 @@ function MapScreen(props) {
         size={25}
         style={styles.back}
       />
-    </SafeAreaView>
+
+      <View style={styles.topHalf}>
+        <Map />
+      </View>
+      <View style={styles.bottomHalf}></View>
+    </View>
   );
 }
 
@@ -25,10 +32,16 @@ const styles = StyleSheet.create({
     top: 40,
     left: 15,
   },
+  bottomHalf: {
+    height: "50%",
+    width: "100%",
+  },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  },
+  topHalf: {
+    height: "50%",
+    width: "100%",
   },
 });
 
