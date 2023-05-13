@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Map from "../components/Map";
 import NavigateCard from "../components/NavigateCard";
+import RideOptions from "../components/RideOptions";
 
 function MapScreen(props) {
   const Stack = createStackNavigator();
@@ -29,6 +30,13 @@ function MapScreen(props) {
           <Stack.Screen
             name="NavigateCard"
             component={NavigateCard}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="RideOptions"
+            component={RideOptions}
             options={{
               headerShown: false,
             }}
