@@ -3,6 +3,8 @@ import { Text } from "react-native";
 import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import Seperator from "./Seperator";
+
 const data = [
   {
     id: "1",
@@ -21,6 +23,7 @@ const data = [
 function NavFavorites(props) {
   return (
     <FlatList
+      ItemSeparatorComponent={Seperator}
       data={data}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
