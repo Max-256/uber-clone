@@ -1,10 +1,17 @@
 import React from "react";
-import { View, StyleSheet, Text, SafeAreaView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import NavFavorites from "./NavFavorites";
 
@@ -20,7 +27,7 @@ function NavigateCard(props) {
           styles={{
             container: {
               backgroundColor: "white",
-              paddingTop: 20,
+              paddingTop: 10,
               flex: 0,
             },
             textInput: {
@@ -57,6 +64,16 @@ function NavigateCard(props) {
         />
       </View>
       <NavFavorites />
+      <View style={styles.iconsContainer}>
+        <TouchableOpacity style={styles.icon}>
+          <MaterialCommunityIcons color="white" name="car" size={25} />
+          <Text style={styles.iconText}>Ride</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon}>
+          <MaterialCommunityIcons color="white" name="food-outline" size={25} />
+          <Text style={styles.iconText}>Eats</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -65,6 +82,25 @@ const styles = StyleSheet.create({
   fullContainer: {
     backgroundColor: "#fff",
     flex: 1,
+    paddingBottom: 30,
+  },
+  icon: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: 85,
+    height: 30,
+    backgroundColor: "black",
+    borderRadius: 30,
+    paddingBottom: 5,
+    paddingTop: 2,
+  },
+  iconsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  iconText: {
+    color: "white",
   },
   text: {
     textAlign: "center",

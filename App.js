@@ -25,6 +25,7 @@ export default function App() {
             <KeyboardAvoidingView
               behavior={Platform.OS === "ios" ? "padding" : "height"}
               style={styles.container}
+              keyboardVerticalOffset={Platform.OS === "ios" ? -64 : 0}
             >
               <Stack.Navigator screenOptions={{ presentation: "modal" }}>
                 <Stack.Screen
