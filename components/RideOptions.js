@@ -5,9 +5,32 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  FlatList,
+  Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+const data = [
+  {
+    id: "Uber-X-123",
+    title: "UberX",
+    multiplier: 1,
+    image: "https://links.papareact.com/3pn",
+  },
+  {
+    id: "Uber-XL",
+    title: "Uber XL",
+    multiplier: 1.2,
+    image: "https://links.papareact.com/5w8",
+  },
+  {
+    id: "Uber-LUX-789",
+    title: "Uber LUX",
+    multiplier: 1.75,
+    image: "https://links.papareact.com/7pf",
+  },
+];
 
 function RideOptions(props) {
   const navigation = useNavigation();
@@ -24,6 +47,20 @@ function RideOptions(props) {
 
         <Text style={styles.selectRide}>Select a ride</Text>
       </View>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.rideContainer}>
+            <Image source={{ uri: item.image }} style={styles.image} />
+            <View>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text>Travel time...</Text>
+            </View>
+            <Text style={styles.price}>€ 99</Text>
+          </TouchableOpacity>
+        )}
+      />
     </SafeAreaView>
   );
 }
@@ -38,12 +75,32 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
+    paddingBottom: 20,
+  },
+  image: {
+    width: 80,
+    height: 80,
+    resizeMode: "contain",
+  },
+  rideContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
+  price: {
+    fontSize: 18,
+    fontWeight: "500",
   },
   selectRide: {
     textAlign: "center",
     paddingVertical: 13,
     fontSize: 20,
     verticalAlign: "middle",
+  },
+  title: {
+    fontWeight: "700",
+    fontSize: 15,
   },
 });
 
