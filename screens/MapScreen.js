@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -14,10 +14,9 @@ function MapScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text>Holla, I am the map screen</Text>
-      <AntDesign
+      <MaterialCommunityIcons
         onPress={() => navigation.goBack()}
-        name="leftcircleo"
+        name="menu"
         size={25}
         style={styles.back}
       />
@@ -51,7 +50,15 @@ const styles = StyleSheet.create({
   back: {
     position: "absolute",
     top: 40,
-    left: 15,
+    left: 20,
+    zIndex: 1,
+    width: 36,
+    height: 36,
+    backgroundColor: "white",
+    borderRadius: 18,
+    textAlign: "center",
+    verticalAlign: "middle",
+    padding: 2,
   },
   bottomHalf: {
     height: "50%",

@@ -70,7 +70,7 @@ function RideOptions(props) {
             <Image source={{ uri: item.image }} style={styles.image} />
             <View>
               <Text style={styles.title}>{item.title}</Text>
-              <Text>{travelTimeInformation?.duration.text} Travel time </Text>
+              <Text>{travelTimeInformation?.duration?.text} Travel time </Text>
             </View>
             <Text style={styles.price}>
               {new Intl.NumberFormat("en-gb", {
