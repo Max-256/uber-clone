@@ -68,6 +68,18 @@ function RideOptions(props) {
           </TouchableOpacity>
         )}
       />
+
+      <View>
+        <TouchableOpacity
+          disabled={!selected}
+          style={[
+            styles.footer,
+            !selected ? { backgroundColor: "lightgray" } : {},
+          ]}
+        >
+          <Text style={styles.footerText}>Choose {selected?.title}</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -84,9 +96,20 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 20,
   },
+  footer: {
+    backgroundColor: "black",
+    margin: 5,
+    paddingVertical: 5,
+  },
+  footerText: {
+    color: "white",
+    fontSize: 17,
+    fontWeight: "700",
+    textAlign: "center",
+  },
   image: {
-    width: 80,
-    height: 80,
+    width: 65,
+    height: 65,
     resizeMode: "contain",
   },
   rideContainer: {
