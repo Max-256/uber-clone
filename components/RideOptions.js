@@ -10,6 +10,11 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+
+import { selectTravelTimeInformation } from "../slices/navSlice";
+
+const SURGE_CHARGE_RATE = 1.5;
 
 const data = [
   {
@@ -35,6 +40,7 @@ const data = [
 function RideOptions(props) {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  const travelTimeInformation = useSelector(selectTravelTimeInformation);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +52,9 @@ function RideOptions(props) {
           size={30}
         />
 
-        <Text style={styles.selectRide}>Select a ride</Text>
+        <Text style={styles.selectRide}>
+          Select a ride - {travelTimeInformation?.distance.text}
+        </Text>
       </View>
       <FlatList
         data={data}
@@ -62,9 +70,19 @@ function RideOptions(props) {
             <Image source={{ uri: item.image }} style={styles.image} />
             <View>
               <Text style={styles.title}>{item.title}</Text>
-              <Text>Travel time...</Text>
+              <Text>{travelTimeInformation?.duration.text} Travel time </Text>
             </View>
-            <Text style={styles.price}>€ 99</Text>
+            <Text style={styles.price}>
+              {new Intl.NumberFormat("en-gb", {
+                style: "currency",
+                currency: "GBP",
+              }).format(
+                (travelTimeInformation?.duration.value *
+                  SURGE_CHARGE_RATE *
+                  item.multiplier) /
+                  100
+              )}
+            </Text>
           </TouchableOpacity>
         )}
       />
