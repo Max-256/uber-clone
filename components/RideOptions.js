@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -34,6 +34,7 @@ const data = [
 
 function RideOptions(props) {
   const navigation = useNavigation();
+  const [selected, setSelected] = useState(null);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,7 +52,13 @@ function RideOptions(props) {
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.rideContainer}>
+          <TouchableOpacity
+            onPress={() => setSelected(item)}
+            style={[
+              styles.rideContainer,
+              item === selected ? styles.highlight : "",
+            ]}
+          >
             <Image source={{ uri: item.image }} style={styles.image} />
             <View>
               <Text style={styles.title}>{item.title}</Text>
@@ -97,6 +104,9 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     fontSize: 20,
     verticalAlign: "middle",
+  },
+  highlight: {
+    backgroundColor: "lightgray",
   },
   title: {
     fontWeight: "700",
