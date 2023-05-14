@@ -65,13 +65,16 @@ function NavigateCard(props) {
       </View>
       <NavFavorites />
       <View style={styles.iconsContainer}>
-        <TouchableOpacity style={styles.icon}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("RideOptions")}
+          style={styles.icon}
+        >
           <MaterialCommunityIcons color="white" name="car" size={25} />
           <Text style={styles.iconText}>Ride</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icon}>
-          <MaterialCommunityIcons color="white" name="food-outline" size={25} />
-          <Text style={styles.iconText}>Eats</Text>
+        <TouchableOpacity style={styles.eatsIcon}>
+          <MaterialCommunityIcons color="black" name="food-outline" size={25} />
+          <Text>Eats</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -79,6 +82,17 @@ function NavigateCard(props) {
 }
 
 const styles = StyleSheet.create({
+  eatsIcon: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: 85,
+    height: 30,
+    backgroundColor: "lightgray",
+    borderRadius: 30,
+    paddingBottom: 5,
+    paddingTop: 2,
+  },
   fullContainer: {
     backgroundColor: "#fff",
     flex: 1,
